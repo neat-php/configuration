@@ -1,0 +1,33 @@
+{
+    "name": "neat/configuration",
+    "description": "Neat Configuration components",
+    "type": "library",
+    "keywords": [
+        "configuration",
+        "environment",
+        "settings"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guido van Biemen",
+            "email": "guidovanbiemen@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Neat\\Configuration\\": "classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Neat\\Configuration\\Test\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0"
+    }
+}
