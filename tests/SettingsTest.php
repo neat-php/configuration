@@ -14,7 +14,7 @@ class SettingsTest extends TestCase
      */
     protected function policy(): Policy
     {
-        return $this->getMockBuilder(Policy::class)->onlyMethods(['setting'])->getMock();
+        return $this->getMockBuilder(Policy::class)->setMethods(['setting'])->getMock();
     }
 
     /**
@@ -22,7 +22,7 @@ class SettingsTest extends TestCase
      */
     protected function environment(): Environment
     {
-        return $this->getMockBuilder(Environment::class)->onlyMethods(['has', 'get'])->getMock();
+        return $this->getMockBuilder(Environment::class)->setMethods(['has', 'get'])->getMock();
     }
 
     /**
