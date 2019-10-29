@@ -6,3 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Environment implementation.
+- Policy implementation for mapping property names to environment settings.
+- Settings trait for automatic Settings initialization.
