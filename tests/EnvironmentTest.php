@@ -34,6 +34,6 @@ class EnvironmentTest extends TestCase
         $this->assertSame($data, $config->all());
         $this->assertSame($data['system_name'], $config->get('system_name'));
         $this->assertTrue($config->has('system_name'));
-        $this->assertSame(['app_email' => $data['app_email'], 'app_url' => $data['app_url']], $config->query('app_'));
+        $this->assertSame(['email' => $data['app_email'], 'url' => $data['app_url']], $config->query('app_'));
     }
 }

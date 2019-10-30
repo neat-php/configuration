@@ -22,7 +22,7 @@ class SettingsTest extends TestCase
      */
     protected function environment(): Environment
     {
-        return $this->getMockBuilder(Environment::class)->setMethods(['has', 'get'])->getMock();
+        return $this->getMockBuilder(Environment::class)->setMethods(['query'])->getMock();
     }
 
     /**
@@ -31,9 +31,9 @@ class SettingsTest extends TestCase
     public function data(): array
     {
         return [
-            [Stub\Name::class, 'TEST_', 'name', 'TEST_NAME', 'Testname', 'Testname'],
-            [Stub\Integer::class, 'TEST_', 'integer', 'TEST_INTEGER', '9', 9],
-            [Stub\Boolean::class, 'TEST_', 'boolean', 'TEST_BOOLEAN', '1', true],
+            [Stub\Name::class, 'TEST_', 'name', 'NAME', 'Testname', 'Testname'],
+            [Stub\Integer::class, 'TEST_', 'integer', 'INTEGER', '9', 9],
+            [Stub\Boolean::class, 'TEST_', 'boolean', 'BOOLEAN', '1', true],
         ];
     }
 
@@ -51,11 +51,18 @@ class SettingsTest extends TestCase
     public function testSettings(string $class, string $prefix, string $property, string $setting, string $value, $result)
     {
         $policy = $this->policy();
-        $policy->expects($this->at(0))->method('setting')->with($prefix, $property)->willReturn($setting);
+        $policy
+            ->expects($this->once())
+            ->method('setting')
+            ->with($property)
+            ->willReturn($setting);
 
         $environment = $this->environment();
-        $environment->expects($this->at(0))->method('has')->with($setting)->willReturn(true);
-        $environment->expects($this->at(1))->method('get')->with($setting)->willReturn($value);
+        $environment
+            ->expects($this->once())
+            ->method('query')
+            ->with($prefix)
+            ->willReturn([$setting => $value]);
 
         $settings = new $class($environment, $policy);
 
@@ -68,11 +75,18 @@ class SettingsTest extends TestCase
     public function testUnknownSetting()
     {
         $policy = $this->policy();
-        $policy->expects($this->at(0))->method('setting')->with('', 'unknown')->willReturn('UNKNOWN');
+        $policy
+            ->expects($this->once())
+            ->method('setting')
+            ->with('unknown')
+            ->willReturn('UNKNOWN');
 
         $environment = $this->environment();
-        $environment->expects($this->at(0))->method('has')->with('UNKNOWN')->willReturn(false);
-        $environment->expects($this->never())->method('get');
+        $environment
+            ->expects($this->once())
+            ->method('query')
+            ->with('')
+            ->willReturn([]);
 
         $settings = new Stub\Unknown($environment, $policy);
 
@@ -85,11 +99,16 @@ class SettingsTest extends TestCase
     public function testSkipStaticSetting()
     {
         $policy = $this->policy();
-        $policy->expects($this->never())->method('setting');
+        $policy
+            ->expects($this->never())
+            ->method('setting');
 
         $environment = $this->environment();
-        $environment->expects($this->never())->method('has');
-        $environment->expects($this->never())->method('get');
+        $environment
+            ->expects($this->once())
+            ->method('query')
+            ->with('')
+            ->willReturn([]);
 
         new Stub\SkipStatic($environment, $policy);
 

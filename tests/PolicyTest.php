@@ -14,11 +14,8 @@ class PolicyTest extends TestCase
     {
         $policy = new Policy();
 
-        $this->assertSame('', $policy->setting('', ''));
-        $this->assertSame('PREFIX_', $policy->setting('PREFIX_', ''));
-        $this->assertSame('PREFIX_', $policy->setting('prefix_', ''));
-        $this->assertSame('SETTING', $policy->setting('', 'setting'));
-        $this->assertSame('CAMEL_CASED', $policy->setting('', 'camelCased'));
-        $this->assertSame('PREFIXED_CAMEL_CASED', $policy->setting('prefixed_', 'camelCased'));
+        $this->assertSame('', $policy->setting(''));
+        $this->assertSame('SETTING', $policy->setting('setting'));
+        $this->assertSame('CAMEL_CASED', $policy->setting('camelCased'));
     }
 }

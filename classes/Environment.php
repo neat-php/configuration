@@ -57,8 +57,13 @@ class Environment
      */
     public function query(string $prefix): array
     {
-        return array_filter($this->settings, function (string $config) use ($prefix) {
-            return strpos($config, $prefix) === 0;
-        }, ARRAY_FILTER_USE_KEY);
+        $settings = [];
+        foreach ($this->settings as $var => $val) {
+            if (strpos($var, $prefix) === 0) {
+                $settings[substr($var, strlen($prefix))] = $val;
+            }
+        }
+
+        return $settings;
     }
 }

@@ -7,12 +7,11 @@ class Policy
     /**
      * Get setting name for property
      *
-     * @param string $prefix
      * @param string $property
      * @return string
      */
-    public function setting(string $prefix, string $property): string
+    public function setting(string $property): string
     {
-        return strtoupper($prefix . preg_replace('/(?<!^)[A-Z]/', '_$0', $property));
+        return strtoupper(preg_replace('/(?<!^)[A-Z]/', '_$0', $property));
     }
 }
