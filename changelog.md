@@ -6,12 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.0]
+## [0.2.1] - 2019-10-31
+### Changed
+- Allow neat/object version ^0.10.
+
+## [0.2.0] - 2019-10-30
 ### Changed
 - Policy setting method will no longer have a prefix parameter.
 - Environment query results will no longer contain the prefix in each key.
 
-## [0.1.0]
+## [0.1.0] - 2019-10-30
 ### Added
 - Environment implementation.
 - Policy implementation for mapping property names to environment settings.
