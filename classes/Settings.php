@@ -2,7 +2,6 @@
 
 namespace Neat\Configuration;
 
-use Neat\Object\Property;
 use ReflectionClass;
 use ReflectionException;
 

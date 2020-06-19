@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2020-06-19
+### Changed
+- Remove neat/object dependency (use a local Property class for now).
+
 ## [0.2.1] - 2019-10-31
 ### Changed
 - Allow neat/object version ^0.10.
